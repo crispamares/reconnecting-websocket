@@ -20,6 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+!function() {
 /**
  * This behaves like a WebSocket in every way, except if it fails to connect,
  * or it gets disconnected, it will repeatedly poll until it succesfully connects
@@ -177,3 +178,14 @@ function ReconnectingWebSocket(url, protocols) {
  */
 ReconnectingWebSocket.debugAll = false;
 
+/**
+ * Compatibility with AMD and Requirejs
+ */
+if (typeof define === "function" && define.amd) {
+    define(ReconnectingWebSocket);
+} else if (typeof module === "object" && module.exports) {
+    module.exports = d3;
+} else {
+    this.ReconnectingWebSocket = ReconnectingWebSocket;
+}
+}();
